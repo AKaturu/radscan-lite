@@ -1,0 +1,294 @@
+{
+  "summary": {
+    "files_analyzed": 15,
+    "valid_dicom_count": 15,
+    "invalid_dicom_count": 0,
+    "study_count": 3,
+    "series_count": 3,
+    "patient_count": 5,
+    "duplicate_uids": 0,
+    "hash_mismatches": 0,
+    "missing_ids": 0
+  },
+  "severity_counts": {
+    "WARNING": 8,
+    "INFO": 20,
+    "MANUAL REVIEW": 1,
+    "ERROR": 5
+  },
+  "total_findings": 34,
+  "findings_sample": [
+    {
+      "rule_id": "PRIV-PATIENTNAME",
+      "severity": "WARNING",
+      "scope": "file",
+      "message": "PHI field 'PatientName' is blank (value not displayed)",
+      "remediation": "De-identify or remove this field before sharing the dataset",
+      "affected_file_count": 1
+    },
+    {
+      "rule_id": "PRIV-PATIENTID",
+      "severity": "WARNING",
+      "scope": "file",
+      "message": "PHI field 'PatientID' is blank (value not displayed)",
+      "remediation": "De-identify or remove this field before sharing the dataset",
+      "affected_file_count": 1
+    },
+    {
+      "rule_id": "PRIV-PATIENT_IDENTITY_REMOVED",
+      "severity": "INFO",
+      "scope": "file",
+      "message": "PatientIdentityRemoved (0012,0062) is missing \u2014 de-identification status unknown",
+      "remediation": "Add PatientIdentityRemoved to document de-identification status",
+      "affected_file_count": 1
+    },
+    {
+      "rule_id": "PRIV-DEIDENTIFICATION_METHOD",
+      "severity": "INFO",
+      "scope": "file",
+      "message": "DeidentificationMethod is missing \u2014 de-identification approach unknown",
+      "remediation": "Document the de-identification method used",
+      "affected_file_count": 1
+    },
+    {
+      "rule_id": "PRIV-BURNED_IN_ANNOTATION",
+      "severity": "MANUAL REVIEW",
+      "scope": "file",
+      "message": "BurnedInAnnotation is missing or blank \u2014 visual review required",
+      "remediation": "Visually inspect images for burned-in annotations",
+      "affected_file_count": 1
+    },
+    {
+      "rule_id": "PRIV-PATIENTNAME",
+      "severity": "WARNING",
+      "scope": "file",
+      "message": "PHI field 'PatientName' is present (value not displayed)",
+      "remediation": "De-identify or remove this field before sharing the dataset",
+      "affected_file_count": 1
+    },
+    {
+      "rule_id": "PRIV-PATIENTID",
+      "severity": "WARNING",
+      "scope": "file",
+      "message": "PHI field 'PatientID' is present (value not displayed)",
+      "remediation": "De-identify or remove this field before sharing the dataset",
+      "affected_file_count": 1
+    },
+    {
+      "rule_id": "PRIV-PATIENTBIRTHDATE",
+      "severity": "WARNING",
+      "scope": "file",
+      "message": "PHI field 'PatientBirthDate' is present (value not displayed)",
+      "remediation": "De-identify or remove this field before sharing the dataset",
+      "affected_file_count": 1
+    },
+    {
+      "rule_id": "PRIV-BURNED_IN_ANNOTATION",
+      "severity": "ERROR",
+      "scope": "file",
+      "message": "BurnedInAnnotation is YES \u2014 images may contain burned-in patient information",
+      "remediation": "Remove or obscure burned-in annotations before sharing",
+      "affected_file_count": 1
+    },
+    {
+      "rule_id": "PRIV-PATIENTADDRESS",
+      "severity": "WARNING",
+      "scope": "file",
+      "message": "PHI field 'PatientAddress' is present (value not displayed)",
+      "remediation": "De-identify or remove this field before sharing the dataset",
+      "affected_file_count": 1
+    },
+    {
+      "rule_id": "PRIV-BURNED_IN_ANNOTATION",
+      "severity": "INFO",
+      "scope": "file",
+      "message": "BurnedInAnnotation is NO \u2014 this is not proof that pixels are free of identifying info",
+      "remediation": "Visual review is still recommended for sensitive datasets",
+      "affected_file_count": 1
+    },
+    {
+      "rule_id": "PRIV-PRIVATE_TAGS",
+      "severity": "INFO",
+      "scope": "file",
+      "message": "Private tags are present \u2014 may contain identifying information",
+      "remediation": "Review private tags for any embedded PHI and remove if necessary",
+      "affected_file_count": 1
+    },
+    {
+      "rule_id": "FILE-012",
+      "severity": "INFO",
+      "scope": "file",
+      "message": "TransferSyntaxUID is not present in the dataset",
+      "remediation": "The file may use implicit VR; consider explicit transfer syntax for clarity",
+      "affected_file_count": 1
+    },
+    {
+      "rule_id": "FILE-012",
+      "severity": "INFO",
+      "scope": "file",
+      "message": "TransferSyntaxUID is not present in the dataset",
+      "remediation": "The file may use implicit VR; consider explicit transfer syntax for clarity",
+      "affected_file_count": 1
+    },
+    {
+      "rule_id": "FILE-012",
+      "severity": "INFO",
+      "scope": "file",
+      "message": "TransferSyntaxUID is not present in the dataset",
+      "remediation": "The file may use implicit VR; consider explicit transfer syntax for clarity",
+      "affected_file_count": 1
+    },
+    {
+      "rule_id": "FILE-012",
+      "severity": "INFO",
+      "scope": "file",
+      "message": "TransferSyntaxUID is not present in the dataset",
+      "remediation": "The file may use implicit VR; consider explicit transfer syntax for clarity",
+      "affected_file_count": 1
+    },
+    {
+      "rule_id": "FILE-012",
+      "severity": "INFO",
+      "scope": "file",
+      "message": "TransferSyntaxUID is not present in the dataset",
+      "remediation": "The file may use implicit VR; consider explicit transfer syntax for clarity",
+      "affected_file_count": 1
+    },
+    {
+      "rule_id": "SERIES-001",
+      "severity": "ERROR",
+      "scope": "series",
+      "message": "Inconsistent rows across series: {256, 512}",
+      "remediation": "All images in a series should have the same number of rows",
+      "affected_file_count": 5
+    },
+    {
+      "rule_id": "SERIES-002",
+      "severity": "ERROR",
+      "scope": "series",
+      "message": "Inconsistent columns across series: {256, 512}",
+      "remediation": "All images in a series should have the same number of columns",
+      "affected_file_count": 5
+    },
+    {
+      "rule_id": "SERIES-003",
+      "severity": "WARNING",
+      "scope": "series",
+      "message": "Inconsistent PixelSpacing across series",
+      "remediation": "Verify pixel spacing is consistent across the series",
+      "affected_file_count": 5
+    },
+    {
+      "rule_id": "SERIES-004",
+      "severity": "WARNING",
+      "scope": "series",
+      "message": "Inconsistent ImageOrientationPatient across series",
+      "remediation": "All images in a series should share the same orientation",
+      "affected_file_count": 5
+    },
+    {
+      "rule_id": "SERIES-006",
+      "severity": "ERROR",
+      "scope": "series",
+      "message": "Duplicate InstanceNumber values found in series",
+      "remediation": "Each instance in a series must have a unique InstanceNumber",
+      "affected_file_count": 5
+    },
+    {
+      "rule_id": "SERIES-008",
+      "severity": "INFO",
+      "scope": "series",
+      "message": "InstanceNumbers are not sequential or do not start from 1",
+      "remediation": "Consider using sequential InstanceNumber values starting from 1",
+      "affected_file_count": 5
+    },
+    {
+      "rule_id": "SERIES-010",
+      "severity": "ERROR",
+      "scope": "series",
+      "message": "Mixed modalities in series: {'CT', 'MR'}",
+      "remediation": "A series should contain only one modality",
+      "affected_file_count": 5
+    },
+    {
+      "rule_id": "FILE-012",
+      "severity": "INFO",
+      "scope": "file",
+      "message": "TransferSyntaxUID is not present in the dataset",
+      "remediation": "The file may use implicit VR; consider explicit transfer syntax for clarity",
+      "affected_file_count": 1
+    },
+    {
+      "rule_id": "FILE-012",
+      "severity": "INFO",
+      "scope": "file",
+      "message": "TransferSyntaxUID is not present in the dataset",
+      "remediation": "The file may use implicit VR; consider explicit transfer syntax for clarity",
+      "affected_file_count": 1
+    },
+    {
+      "rule_id": "FILE-012",
+      "severity": "INFO",
+      "scope": "file",
+      "message": "TransferSyntaxUID is not present in the dataset",
+      "remediation": "The file may use implicit VR; consider explicit transfer syntax for clarity",
+      "affected_file_count": 1
+    },
+    {
+      "rule_id": "FILE-012",
+      "severity": "INFO",
+      "scope": "file",
+      "message": "TransferSyntaxUID is not present in the dataset",
+      "remediation": "The file may use implicit VR; consider explicit transfer syntax for clarity",
+      "affected_file_count": 1
+    },
+    {
+      "rule_id": "FILE-012",
+      "severity": "INFO",
+      "scope": "file",
+      "message": "TransferSyntaxUID is not present in the dataset",
+      "remediation": "The file may use implicit VR; consider explicit transfer syntax for clarity",
+      "affected_file_count": 1
+    },
+    {
+      "rule_id": "FILE-012",
+      "severity": "INFO",
+      "scope": "file",
+      "message": "TransferSyntaxUID is not present in the dataset",
+      "remediation": "The file may use implicit VR; consider explicit transfer syntax for clarity",
+      "affected_file_count": 1
+    },
+    {
+      "rule_id": "FILE-012",
+      "severity": "INFO",
+      "scope": "file",
+      "message": "TransferSyntaxUID is not present in the dataset",
+      "remediation": "The file may use implicit VR; consider explicit transfer syntax for clarity",
+      "affected_file_count": 1
+    },
+    {
+      "rule_id": "FILE-012",
+      "severity": "INFO",
+      "scope": "file",
+      "message": "TransferSyntaxUID is not present in the dataset",
+      "remediation": "The file may use implicit VR; consider explicit transfer syntax for clarity",
+      "affected_file_count": 1
+    },
+    {
+      "rule_id": "FILE-012",
+      "severity": "INFO",
+      "scope": "file",
+      "message": "TransferSyntaxUID is not present in the dataset",
+      "remediation": "The file may use implicit VR; consider explicit transfer syntax for clarity",
+      "affected_file_count": 1
+    },
+    {
+      "rule_id": "FILE-012",
+      "severity": "INFO",
+      "scope": "file",
+      "message": "TransferSyntaxUID is not present in the dataset",
+      "remediation": "The file may use implicit VR; consider explicit transfer syntax for clarity",
+      "affected_file_count": 1
+    }
+  ]
+}

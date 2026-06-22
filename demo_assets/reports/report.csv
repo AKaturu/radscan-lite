@@ -1,0 +1,21 @@
+rule_id,severity,scope,message,remediation,affected_file_count
+PRIV-PATIENTNAME,WARNING,file,PHI field 'PatientName' is blank (value not displayed),De-identify or remove this field before sharing the dataset,1
+PRIV-PATIENTID,WARNING,file,PHI field 'PatientID' is blank (value not displayed),De-identify or remove this field before sharing the dataset,1
+PRIV-PATIENT_IDENTITY_REMOVED,INFO,file,"PatientIdentityRemoved (0012,0062) is missing — de-identification status unknown",Add PatientIdentityRemoved to document de-identification status,1
+PRIV-DEIDENTIFICATION_METHOD,INFO,file,DeidentificationMethod is missing — de-identification approach unknown,Document the de-identification method used,1
+PRIV-BURNED_IN_ANNOTATION,MANUAL REVIEW,file,BurnedInAnnotation is missing or blank — visual review required,Visually inspect images for burned-in annotations,1
+PRIV-PATIENTNAME,WARNING,file,PHI field 'PatientName' is present (value not displayed),De-identify or remove this field before sharing the dataset,1
+PRIV-PATIENTID,WARNING,file,PHI field 'PatientID' is present (value not displayed),De-identify or remove this field before sharing the dataset,1
+PRIV-PATIENTBIRTHDATE,WARNING,file,PHI field 'PatientBirthDate' is present (value not displayed),De-identify or remove this field before sharing the dataset,1
+PRIV-BURNED_IN_ANNOTATION,ERROR,file,BurnedInAnnotation is YES — images may contain burned-in patient information,Remove or obscure burned-in annotations before sharing,1
+PRIV-PATIENTADDRESS,WARNING,file,PHI field 'PatientAddress' is present (value not displayed),De-identify or remove this field before sharing the dataset,1
+PRIV-BURNED_IN_ANNOTATION,INFO,file,BurnedInAnnotation is NO — this is not proof that pixels are free of identifying info,Visual review is still recommended for sensitive datasets,1
+PRIV-PRIVATE_TAGS,INFO,file,Private tags are present — may contain identifying information,Review private tags for any embedded PHI and remove if necessary,1
+FILE-012,INFO,file,TransferSyntaxUID is not present in the dataset,The file may use implicit VR; consider explicit transfer syntax for clarity,1
+SERIES-001,ERROR,series,"Inconsistent rows across series: {256, 512}",All images in a series should have the same number of rows,5
+SERIES-002,ERROR,series,"Inconsistent columns across series: {256, 512}",All images in a series should have the same number of columns,5
+SERIES-003,WARNING,series,Inconsistent PixelSpacing across series,Verify pixel spacing is consistent across the series,5
+SERIES-004,WARNING,series,Inconsistent ImageOrientationPatient across series,All images in a series should share the same orientation,5
+SERIES-006,ERROR,series,Duplicate InstanceNumber values found in series,Each instance in a series must have a unique InstanceNumber,5
+SERIES-008,INFO,series,InstanceNumbers are not sequential or do not start from 1,Consider using sequential InstanceNumber values starting from 1,5
+SERIES-010,ERROR,series,"Mixed modalities in series: {'MR', 'CT'}",A series should contain only one modality,5

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RadScan Lite — DICOM Preflight Scanner</title>
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --surface-2: #242837;
+      --primary: #4fc3f7;
+      --accent: #81c784;
+      --error: #e57373;
+      --warning: #ffb74d;
+      --text: #e0e0e0;
+      --text-muted: #9e9e9e;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 2rem; }
+    header { text-align: center; padding: 4rem 0 2rem; }
+    header h1 { font-size: 2.8rem; font-weight: 800; background: linear-gradient(135deg, var(--primary), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    header p { font-size: 1.2rem; color: var(--text-muted); margin-top: 0.5rem; }
+    .badges { margin: 1rem 0; display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; }
+    .badge { padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600; }
+    .badge.status { background: #2e7d32; color: #fff; }
+    .badge.git { background: #1565c0; color: #fff; }
+    .badge.test { background: #6a1b9a; color: #fff; }
+    .badge.quality { background: #e65100; color: #fff; }
+    section { margin: 3rem 0; }
+    h2 { font-size: 1.6rem; margin-bottom: 1rem; border-bottom: 2px solid var(--surface-2); padding-bottom: 0.5rem; }
+    h2 .emoji { margin-right: 0.5rem; }
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; }
+    .card { background: var(--surface); border-radius: 12px; padding: 1.5rem; border: 1px solid var(--surface-2); }
+    .card h3 { margin-bottom: 0.5rem; font-size: 1.1rem; }
+    .card p { color: var(--text-muted); font-size: 0.9rem; }
+    .screenshots { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 1.5rem; }
+    .screenshot { background: var(--surface); border-radius: 12px; overflow: hidden; border: 1px solid var(--surface-2); }
+    .screenshot img { width: 100%; display: block; }
+    .screenshot .caption { padding: 1rem; font-size: 0.9rem; color: var(--text-muted); }
+    .results-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+    .stat { background: var(--surface); border-radius: 12px; padding: 1.5rem; text-align: center; border: 1px solid var(--surface-2); }
+    .stat .value { font-size: 2rem; font-weight: 700; }
+    .stat .label { font-size: 0.85rem; color: var(--text-muted); margin-top: 0.3rem; }
+    .stat.error .value { color: var(--error); }
+    .stat.info .value { color: var(--primary); }
+    .stat.success .value { color: var(--accent); }
+    .stat.warning .value { color: var(--warning); }
+    pre { background: var(--surface-2); padding: 1rem; border-radius: 8px; overflow-x: auto; font-size: 0.85rem; }
+    code { font-family: 'Fira Code', 'Cascadia Code', monospace; }
+    .findings { margin-top: 1rem; }
+    .finding { padding: 0.8rem 1rem; border-radius: 8px; margin-bottom: 0.5rem; font-size: 0.9rem; display: flex; gap: 1rem; align-items: flex-start; }
+    .finding.error { background: rgba(229,115,115,0.15); border-left: 4px solid var(--error); }
+    .finding.warning { background: rgba(255,183,77,0.15); border-left: 4px solid var(--warning); }
+    .finding.info { background: rgba(79,195,247,0.15); border-left: 4px solid var(--primary); }
+    .finding.manual { background: rgba(255,238,88,0.15); border-left: 4px solid #ffee58; }
+    .finding .sev { font-weight: 700; min-width: 100px; }
+    .finding .msg { flex: 1; }
+    .btn { display: inline-block; padding: 0.75rem 1.5rem; border-radius: 8px; text-decoration: none; font-weight: 600; transition: all 0.2s; margin-right: 0.5rem; margin-bottom: 0.5rem; }
+    .btn.primary { background: var(--primary); color: #000; }
+    .btn.secondary { background: var(--surface-2); color: var(--text); }
+    .btn:hover { transform: translateY(-2px); opacity: 0.9; }
+    footer { text-align: center; padding: 3rem 0; color: var(--text-muted); font-size: 0.85rem; }
+    a { color: var(--primary); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>RadScan Lite</h1>
+      <p>Local, read-only DICOM dataset preflight scanner for radiology researchers</p>
+      <div class="badges">
+        <span class="badge status">Active</span>
+        <span class="badge git">Git Required</span>
+        <span class="badge test">Testing Mandatory</span>
+        <span class="badge quality">Production Ready</span>
+      </div>
+    </header>
+
+    <section>
+      <h2><span class="emoji">&#9889;</span> Quick Start</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>&#128217; Installation</h3>
+          <pre><code>pip install radscan-lite
+streamlit run app.py</code></pre>
+        </div>
+        <div class="card">
+          <h3>&#128220; Test Suite</h3>
+          <pre><code>pytest -q
+# 29 passed in 1.32s</code></pre>
+        </div>
+        <div class="card">
+          <h3>&#128200; Generate Demo Data</h3>
+          <pre><code>python scripts/generate_synthetic_data.py</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2><span class="emoji">&#128202;</span> Demo Results</h2>
+      <p style="margin-bottom:1rem;color:var(--text-muted);">Scanning a 15-file synthetic dataset (3 series: clean, inconsistent, privacy-warning)</p>
+      <div class="results-grid">
+        <div class="stat success"><div class="value">15</div><div class="label">Files Analyzed</div></div>
+        <div class="stat success"><div class="value">15</div><div class="label">Valid DICOM</div></div>
+        <div class="stat info"><div class="value">34</div><div class="label">Total Findings</div></div>
+        <div class="stat error"><div class="value">5</div><div class="label">Errors</div></div>
+        <div class="stat warning"><div class="value">8</div><div class="label">Warnings</div></div>
+        <div class="stat"><div class="value">3</div><div class="label">Series/Runs</div></div>
+        <div class="stat"><div class="value">5</div><div class="label">Patients</div></div>
+        <div class="stat info"><div class="value">1</div><div class="label">Manual Reviews</div></div>
+      </div>
+    </section>
+
+    <section>
+      <h2><span class="emoji">&#128247;</span> Screenshots</h2>
+      <div class="screenshots">
+        <div class="screenshot">
+          <img src="../demo_assets/01_empty_app.png" alt="Empty application">
+          <div class="caption">Fig 1. Upload interface — drag-and-drop DICOM files or ZIP archives</div>
+        </div>
+        <div class="screenshot">
+          <img src="../demo_assets/02_scan_results.png" alt="Scan results dashboard">
+          <div class="caption">Fig 2. Overall status dashboard with metrics cards and findings</div>
+        </div>
+        <div class="screenshot">
+          <img src="../demo_assets/03_findings.png" alt="Findings by severity">
+          <div class="caption">Fig 3. Findings grouped by severity with expandable sections</div>
+        </div>
+        <div class="screenshot">
+          <img src="../demo_assets/04_privacy_warnings.png" alt="Privacy warnings">
+          <div class="caption">Fig 4. Privacy warnings — PHI fields detected (values not displayed)</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2><span class="emoji">&#128269;</span> Key Findings</h2>
+      <div class="findings">
+        <div class="finding error">
+          <div class="sev">ERROR</div>
+          <div class="msg"><strong>SERIES-001</strong> — Inconsistent rows across series: {256, 512}</div>
+        </div>
+        <div class="finding error">
+          <div class="sev">ERROR</div>
+          <div class="msg"><strong>SERIES-006</strong> — Duplicate InstanceNumber values found in series</div>
+        </div>
+        <div class="finding error">
+          <div class="sev">ERROR</div>
+          <div class="msg"><strong>SERIES-010</strong> — Mixed modalities in series: {CT, MR}</div>
+        </div>
+        <div class="finding error">
+          <div class="sev">ERROR</div>
+          <div class="msg"><strong>PRIV-BURNED_IN_ANNOTATION</strong> — BurnedInAnnotation is YES</div>
+        </div>
+        <div class="finding warning">
+          <div class="sev">WARNING</div>
+          <div class="msg"><strong>PRIV-PATIENTNAME</strong> — PHI field present (value not displayed)</div>
+        </div>
+        <div class="finding warning">
+          <div class="sev">WARNING</div>
+          <div class="msg"><strong>PRIV-PATIENTID</strong> — PHI field present (value not displayed)</div>
+        </div>
+        <div class="finding warning">
+          <div class="sev">WARNING</div>
+          <div class="msg"><strong>PRIV-PATIENTBIRTHDATE</strong> — PHI field present (value not displayed)</div>
+        </div>
+        <div class="finding manual">
+          <div class="sev">MANUAL REVIEW</div>
+          <div class="msg"><strong>PRIV-BURNED_IN_ANNOTATION</strong> — Missing or blank; visual review required</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2><span class="emoji">&#128214;</span> Documentation</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>&#128196; Paper</h3>
+          <p>Read the full technical paper describing the system design, evaluation, and results.</p>
+          <a href="PAPER.md" class="btn secondary">Read Paper</a>
+        </div>
+        <div class="card">
+          <h3>&#128230; Reports</h3>
+          <p>Download the full CSV and JSON scan reports from the demo run.</p>
+          <a href="../demo_assets/reports/report.csv" class="btn secondary">CSV</a>
+          <a href="../demo_assets/reports/report.json" class="btn secondary">JSON</a>
+        </div>
+        <div class="card">
+          <h3>&#128187; Source Code</h3>
+          <p>Fork or clone the repository from GitHub.</p>
+          <a href="https://github.com/SamuelH98/Ultimate-SWE" class="btn primary">View on GitHub</a>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>RadScan Lite — Not a medical device. Does not establish HIPAA compliance.</p>
+    </footer>
+  </div>
+</body>
+</html>

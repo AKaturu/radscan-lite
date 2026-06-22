@@ -1,0 +1,468 @@
+{
+  "scan_timestamp": "2026-06-22T04:58:50.974843+00:00",
+  "files_analyzed": 15,
+  "valid_dicom_count": 15,
+  "invalid_dicom_count": 0,
+  "patient_count": 5,
+  "study_count": 3,
+  "series_count": 3,
+  "duplicate_sop_instance_uids": [],
+  "files_with_same_uid_different_hash": [],
+  "dataset_findings": [
+    {
+      "rule_id": "PRIV-PATIENTNAME",
+      "severity": "WARNING",
+      "scope": "file",
+      "message": "PHI field 'PatientName' is blank (value not displayed)",
+      "remediation": "De-identify or remove this field before sharing the dataset",
+      "affected_file_count": 1
+    },
+    {
+      "rule_id": "PRIV-PATIENTID",
+      "severity": "WARNING",
+      "scope": "file",
+      "message": "PHI field 'PatientID' is blank (value not displayed)",
+      "remediation": "De-identify or remove this field before sharing the dataset",
+      "affected_file_count": 1
+    },
+    {
+      "rule_id": "PRIV-PATIENT_IDENTITY_REMOVED",
+      "severity": "INFO",
+      "scope": "file",
+      "message": "PatientIdentityRemoved (0012,0062) is missing \u2014 de-identification status unknown",
+      "remediation": "Add PatientIdentityRemoved to document de-identification status",
+      "affected_file_count": 1
+    },
+    {
+      "rule_id": "PRIV-DEIDENTIFICATION_METHOD",
+      "severity": "INFO",
+      "scope": "file",
+      "message": "DeidentificationMethod is missing \u2014 de-identification approach unknown",
+      "remediation": "Document the de-identification method used",
+      "affected_file_count": 1
+    },
+    {
+      "rule_id": "PRIV-BURNED_IN_ANNOTATION",
+      "severity": "MANUAL REVIEW",
+      "scope": "file",
+      "message": "BurnedInAnnotation is missing or blank \u2014 visual review required",
+      "remediation": "Visually inspect images for burned-in annotations",
+      "affected_file_count": 1
+    },
+    {
+      "rule_id": "PRIV-PATIENTNAME",
+      "severity": "WARNING",
+      "scope": "file",
+      "message": "PHI field 'PatientName' is present (value not displayed)",
+      "remediation": "De-identify or remove this field before sharing the dataset",
+      "affected_file_count": 1
+    },
+    {
+      "rule_id": "PRIV-PATIENTID",
+      "severity": "WARNING",
+      "scope": "file",
+      "message": "PHI field 'PatientID' is present (value not displayed)",
+      "remediation": "De-identify or remove this field before sharing the dataset",
+      "affected_file_count": 1
+    },
+    {
+      "rule_id": "PRIV-PATIENTBIRTHDATE",
+      "severity": "WARNING",
+      "scope": "file",
+      "message": "PHI field 'PatientBirthDate' is present (value not displayed)",
+      "remediation": "De-identify or remove this field before sharing the dataset",
+      "affected_file_count": 1
+    },
+    {
+      "rule_id": "PRIV-BURNED_IN_ANNOTATION",
+      "severity": "ERROR",
+      "scope": "file",
+      "message": "BurnedInAnnotation is YES \u2014 images may contain burned-in patient information",
+      "remediation": "Remove or obscure burned-in annotations before sharing",
+      "affected_file_count": 1
+    },
+    {
+      "rule_id": "PRIV-PATIENTADDRESS",
+      "severity": "WARNING",
+      "scope": "file",
+      "message": "PHI field 'PatientAddress' is present (value not displayed)",
+      "remediation": "De-identify or remove this field before sharing the dataset",
+      "affected_file_count": 1
+    },
+    {
+      "rule_id": "PRIV-BURNED_IN_ANNOTATION",
+      "severity": "INFO",
+      "scope": "file",
+      "message": "BurnedInAnnotation is NO \u2014 this is not proof that pixels are free of identifying info",
+      "remediation": "Visual review is still recommended for sensitive datasets",
+      "affected_file_count": 1
+    },
+    {
+      "rule_id": "PRIV-PRIVATE_TAGS",
+      "severity": "INFO",
+      "scope": "file",
+      "message": "Private tags are present \u2014 may contain identifying information",
+      "remediation": "Review private tags for any embedded PHI and remove if necessary",
+      "affected_file_count": 1
+    }
+  ],
+  "studies": [
+    {
+      "study_instance_uid": "1.2.826.0.1.3680043.8.498.11644226488590143086229342071152472446",
+      "series_count": 1,
+      "findings": [],
+      "series": [
+        {
+          "series_instance_uid": "1.2.826.0.1.3680043.8.498.27819051143947237766349492712525663456",
+          "modality": "CT",
+          "file_count": 5,
+          "findings": [],
+          "files": [
+            {
+              "path": "C:\\Users\\ABINAV~1\\AppData\\Local\\Temp\\radscan_demo_data_ah4te457\\clean_series\\ct_clean_001.dcm",
+              "is_valid_dicom": true,
+              "sop_class_uid": "1.2.840.10008.5.1.4.1.1.2",
+              "sop_instance_uid": "1.2.826.0.1.3680043.8.498.19510480108832012393715864627725520939",
+              "modality": "CT",
+              "findings": [
+                {
+                  "rule_id": "FILE-012",
+                  "severity": "INFO",
+                  "scope": "file",
+                  "message": "TransferSyntaxUID is not present in the dataset",
+                  "remediation": "The file may use implicit VR; consider explicit transfer syntax for clarity",
+                  "affected_file_count": 1
+                }
+              ]
+            },
+            {
+              "path": "C:\\Users\\ABINAV~1\\AppData\\Local\\Temp\\radscan_demo_data_ah4te457\\clean_series\\ct_clean_002.dcm",
+              "is_valid_dicom": true,
+              "sop_class_uid": "1.2.840.10008.5.1.4.1.1.2",
+              "sop_instance_uid": "1.2.826.0.1.3680043.8.498.91051161780481714525218133139674448657",
+              "modality": "CT",
+              "findings": [
+                {
+                  "rule_id": "FILE-012",
+                  "severity": "INFO",
+                  "scope": "file",
+                  "message": "TransferSyntaxUID is not present in the dataset",
+                  "remediation": "The file may use implicit VR; consider explicit transfer syntax for clarity",
+                  "affected_file_count": 1
+                }
+              ]
+            },
+            {
+              "path": "C:\\Users\\ABINAV~1\\AppData\\Local\\Temp\\radscan_demo_data_ah4te457\\clean_series\\ct_clean_003.dcm",
+              "is_valid_dicom": true,
+              "sop_class_uid": "1.2.840.10008.5.1.4.1.1.2",
+              "sop_instance_uid": "1.2.826.0.1.3680043.8.498.24392661023156077395558169553789593013",
+              "modality": "CT",
+              "findings": [
+                {
+                  "rule_id": "FILE-012",
+                  "severity": "INFO",
+                  "scope": "file",
+                  "message": "TransferSyntaxUID is not present in the dataset",
+                  "remediation": "The file may use implicit VR; consider explicit transfer syntax for clarity",
+                  "affected_file_count": 1
+                }
+              ]
+            },
+            {
+              "path": "C:\\Users\\ABINAV~1\\AppData\\Local\\Temp\\radscan_demo_data_ah4te457\\clean_series\\ct_clean_004.dcm",
+              "is_valid_dicom": true,
+              "sop_class_uid": "1.2.840.10008.5.1.4.1.1.2",
+              "sop_instance_uid": "1.2.826.0.1.3680043.8.498.85371519611890719265565529464592043933",
+              "modality": "CT",
+              "findings": [
+                {
+                  "rule_id": "FILE-012",
+                  "severity": "INFO",
+                  "scope": "file",
+                  "message": "TransferSyntaxUID is not present in the dataset",
+                  "remediation": "The file may use implicit VR; consider explicit transfer syntax for clarity",
+                  "affected_file_count": 1
+                }
+              ]
+            },
+            {
+              "path": "C:\\Users\\ABINAV~1\\AppData\\Local\\Temp\\radscan_demo_data_ah4te457\\clean_series\\ct_clean_005.dcm",
+              "is_valid_dicom": true,
+              "sop_class_uid": "1.2.840.10008.5.1.4.1.1.2",
+              "sop_instance_uid": "1.2.826.0.1.3680043.8.498.52125920491124219445559863173650848428",
+              "modality": "CT",
+              "findings": [
+                {
+                  "rule_id": "FILE-012",
+                  "severity": "INFO",
+                  "scope": "file",
+                  "message": "TransferSyntaxUID is not present in the dataset",
+                  "remediation": "The file may use implicit VR; consider explicit transfer syntax for clarity",
+                  "affected_file_count": 1
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "study_instance_uid": "1.2.826.0.1.3680043.8.498.21205593929474337693206095337562063422",
+      "series_count": 1,
+      "findings": [],
+      "series": [
+        {
+          "series_instance_uid": "1.2.826.0.1.3680043.8.498.92974402676492578089074390121376185217",
+          "modality": "CT",
+          "file_count": 5,
+          "findings": [
+            {
+              "rule_id": "SERIES-001",
+              "severity": "ERROR",
+              "scope": "series",
+              "message": "Inconsistent rows across series: {256, 512}",
+              "remediation": "All images in a series should have the same number of rows",
+              "affected_file_count": 5
+            },
+            {
+              "rule_id": "SERIES-002",
+              "severity": "ERROR",
+              "scope": "series",
+              "message": "Inconsistent columns across series: {256, 512}",
+              "remediation": "All images in a series should have the same number of columns",
+              "affected_file_count": 5
+            },
+            {
+              "rule_id": "SERIES-003",
+              "severity": "WARNING",
+              "scope": "series",
+              "message": "Inconsistent PixelSpacing across series",
+              "remediation": "Verify pixel spacing is consistent across the series",
+              "affected_file_count": 5
+            },
+            {
+              "rule_id": "SERIES-004",
+              "severity": "WARNING",
+              "scope": "series",
+              "message": "Inconsistent ImageOrientationPatient across series",
+              "remediation": "All images in a series should share the same orientation",
+              "affected_file_count": 5
+            },
+            {
+              "rule_id": "SERIES-006",
+              "severity": "ERROR",
+              "scope": "series",
+              "message": "Duplicate InstanceNumber values found in series",
+              "remediation": "Each instance in a series must have a unique InstanceNumber",
+              "affected_file_count": 5
+            },
+            {
+              "rule_id": "SERIES-008",
+              "severity": "INFO",
+              "scope": "series",
+              "message": "InstanceNumbers are not sequential or do not start from 1",
+              "remediation": "Consider using sequential InstanceNumber values starting from 1",
+              "affected_file_count": 5
+            },
+            {
+              "rule_id": "SERIES-010",
+              "severity": "ERROR",
+              "scope": "series",
+              "message": "Mixed modalities in series: {'CT', 'MR'}",
+              "remediation": "A series should contain only one modality",
+              "affected_file_count": 5
+            }
+          ],
+          "files": [
+            {
+              "path": "C:\\Users\\ABINAV~1\\AppData\\Local\\Temp\\radscan_demo_data_ah4te457\\inconsistent_series\\ct_inconsistent_001.dcm",
+              "is_valid_dicom": true,
+              "sop_class_uid": "1.2.840.10008.5.1.4.1.1.2",
+              "sop_instance_uid": "1.2.826.0.1.3680043.8.498.74692564706725951450804180779136291116",
+              "modality": "CT",
+              "findings": [
+                {
+                  "rule_id": "FILE-012",
+                  "severity": "INFO",
+                  "scope": "file",
+                  "message": "TransferSyntaxUID is not present in the dataset",
+                  "remediation": "The file may use implicit VR; consider explicit transfer syntax for clarity",
+                  "affected_file_count": 1
+                }
+              ]
+            },
+            {
+              "path": "C:\\Users\\ABINAV~1\\AppData\\Local\\Temp\\radscan_demo_data_ah4te457\\inconsistent_series\\ct_inconsistent_002.dcm",
+              "is_valid_dicom": true,
+              "sop_class_uid": "1.2.840.10008.5.1.4.1.1.2",
+              "sop_instance_uid": "1.2.826.0.1.3680043.8.498.52850771282478796139602270036451489313",
+              "modality": "CT",
+              "findings": [
+                {
+                  "rule_id": "FILE-012",
+                  "severity": "INFO",
+                  "scope": "file",
+                  "message": "TransferSyntaxUID is not present in the dataset",
+                  "remediation": "The file may use implicit VR; consider explicit transfer syntax for clarity",
+                  "affected_file_count": 1
+                }
+              ]
+            },
+            {
+              "path": "C:\\Users\\ABINAV~1\\AppData\\Local\\Temp\\radscan_demo_data_ah4te457\\inconsistent_series\\ct_inconsistent_003.dcm",
+              "is_valid_dicom": true,
+              "sop_class_uid": "1.2.840.10008.5.1.4.1.1.2",
+              "sop_instance_uid": "1.2.826.0.1.3680043.8.498.75246360054390071218958768830899059057",
+              "modality": "CT",
+              "findings": [
+                {
+                  "rule_id": "FILE-012",
+                  "severity": "INFO",
+                  "scope": "file",
+                  "message": "TransferSyntaxUID is not present in the dataset",
+                  "remediation": "The file may use implicit VR; consider explicit transfer syntax for clarity",
+                  "affected_file_count": 1
+                }
+              ]
+            },
+            {
+              "path": "C:\\Users\\ABINAV~1\\AppData\\Local\\Temp\\radscan_demo_data_ah4te457\\inconsistent_series\\ct_inconsistent_004.dcm",
+              "is_valid_dicom": true,
+              "sop_class_uid": "1.2.840.10008.5.1.4.1.1.2",
+              "sop_instance_uid": "1.2.826.0.1.3680043.8.498.95148501197022830161214791528880610379",
+              "modality": "CT",
+              "findings": [
+                {
+                  "rule_id": "FILE-012",
+                  "severity": "INFO",
+                  "scope": "file",
+                  "message": "TransferSyntaxUID is not present in the dataset",
+                  "remediation": "The file may use implicit VR; consider explicit transfer syntax for clarity",
+                  "affected_file_count": 1
+                }
+              ]
+            },
+            {
+              "path": "C:\\Users\\ABINAV~1\\AppData\\Local\\Temp\\radscan_demo_data_ah4te457\\inconsistent_series\\ct_inconsistent_005.dcm",
+              "is_valid_dicom": true,
+              "sop_class_uid": "1.2.840.10008.5.1.4.1.1.2",
+              "sop_instance_uid": "1.2.826.0.1.3680043.8.498.76011755731145017573031183767279619778",
+              "modality": "MR",
+              "findings": [
+                {
+                  "rule_id": "FILE-012",
+                  "severity": "INFO",
+                  "scope": "file",
+                  "message": "TransferSyntaxUID is not present in the dataset",
+                  "remediation": "The file may use implicit VR; consider explicit transfer syntax for clarity",
+                  "affected_file_count": 1
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "study_instance_uid": "1.2.826.0.1.3680043.8.498.39662392055874809955601933056844133180",
+      "series_count": 1,
+      "findings": [],
+      "series": [
+        {
+          "series_instance_uid": "1.2.826.0.1.3680043.8.498.91637462174855961823346364884144169788",
+          "modality": "CT",
+          "file_count": 5,
+          "findings": [],
+          "files": [
+            {
+              "path": "C:\\Users\\ABINAV~1\\AppData\\Local\\Temp\\radscan_demo_data_ah4te457\\privacy_series\\ct_privacy_001.dcm",
+              "is_valid_dicom": true,
+              "sop_class_uid": "1.2.840.10008.5.1.4.1.1.2",
+              "sop_instance_uid": "1.2.826.0.1.3680043.8.498.84847101060805101961686641609831762613",
+              "modality": "CT",
+              "findings": [
+                {
+                  "rule_id": "FILE-012",
+                  "severity": "INFO",
+                  "scope": "file",
+                  "message": "TransferSyntaxUID is not present in the dataset",
+                  "remediation": "The file may use implicit VR; consider explicit transfer syntax for clarity",
+                  "affected_file_count": 1
+                }
+              ]
+            },
+            {
+              "path": "C:\\Users\\ABINAV~1\\AppData\\Local\\Temp\\radscan_demo_data_ah4te457\\privacy_series\\ct_privacy_002.dcm",
+              "is_valid_dicom": true,
+              "sop_class_uid": "1.2.840.10008.5.1.4.1.1.2",
+              "sop_instance_uid": "1.2.826.0.1.3680043.8.498.24353526422689230686591709082470613731",
+              "modality": "CT",
+              "findings": [
+                {
+                  "rule_id": "FILE-012",
+                  "severity": "INFO",
+                  "scope": "file",
+                  "message": "TransferSyntaxUID is not present in the dataset",
+                  "remediation": "The file may use implicit VR; consider explicit transfer syntax for clarity",
+                  "affected_file_count": 1
+                }
+              ]
+            },
+            {
+              "path": "C:\\Users\\ABINAV~1\\AppData\\Local\\Temp\\radscan_demo_data_ah4te457\\privacy_series\\ct_privacy_003.dcm",
+              "is_valid_dicom": true,
+              "sop_class_uid": "1.2.840.10008.5.1.4.1.1.2",
+              "sop_instance_uid": "1.2.826.0.1.3680043.8.498.66546848245088272811686423232579872898",
+              "modality": "CT",
+              "findings": [
+                {
+                  "rule_id": "FILE-012",
+                  "severity": "INFO",
+                  "scope": "file",
+                  "message": "TransferSyntaxUID is not present in the dataset",
+                  "remediation": "The file may use implicit VR; consider explicit transfer syntax for clarity",
+                  "affected_file_count": 1
+                }
+              ]
+            },
+            {
+              "path": "C:\\Users\\ABINAV~1\\AppData\\Local\\Temp\\radscan_demo_data_ah4te457\\privacy_series\\ct_privacy_004.dcm",
+              "is_valid_dicom": true,
+              "sop_class_uid": "1.2.840.10008.5.1.4.1.1.2",
+              "sop_instance_uid": "1.2.826.0.1.3680043.8.498.83159497994141603655587722668167299639",
+              "modality": "CT",
+              "findings": [
+                {
+                  "rule_id": "FILE-012",
+                  "severity": "INFO",
+                  "scope": "file",
+                  "message": "TransferSyntaxUID is not present in the dataset",
+                  "remediation": "The file may use implicit VR; consider explicit transfer syntax for clarity",
+                  "affected_file_count": 1
+                }
+              ]
+            },
+            {
+              "path": "C:\\Users\\ABINAV~1\\AppData\\Local\\Temp\\radscan_demo_data_ah4te457\\privacy_series\\ct_privacy_005.dcm",
+              "is_valid_dicom": true,
+              "sop_class_uid": "1.2.840.10008.5.1.4.1.1.2",
+              "sop_instance_uid": "1.2.826.0.1.3680043.8.498.64211066796632919559616366024025199963",
+              "modality": "CT",
+              "findings": [
+                {
+                  "rule_id": "FILE-012",
+                  "severity": "INFO",
+                  "scope": "file",
+                  "message": "TransferSyntaxUID is not present in the dataset",
+                  "remediation": "The file may use implicit VR; consider explicit transfer syntax for clarity",
+                  "affected_file_count": 1
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
