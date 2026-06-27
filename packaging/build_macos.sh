@@ -4,31 +4,29 @@
 # ============================================================
 set -euo pipefail
 
-echo "=== RadScan Lite — macOS Build ==="
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+cd "$ROOT_DIR"
 
-# Check Python
+echo "=== RadScan Lite - macOS Build ==="
+
 if ! command -v python3 &> /dev/null; then
     echo "ERROR: Python3 not found. Install from https://www.python.org/downloads/"
     exit 1
 fi
 
-# Install build dependencies
 echo "=== Installing build dependencies..."
-pip3 install --upgrade pip
-pip3 install pyinstaller streamlit pydicom numpy pandas Pillow pydantic
+python3 -m pip install --upgrade pip
+python3 -m pip install -e ".[packaging]"
 
-# Clean previous builds
 echo "=== Cleaning previous builds..."
-rm -rf ../dist ../build
+rm -rf dist build
 
-# Run PyInstaller
-echo "=== Building executable..."
+echo "=== Building app bundle..."
 pyinstaller --clean \
     --name "RadScanLite" \
-    --onefile \
     --windowed \
-    --add-data "../app.py:." \
-    --add-data "../radscan_lite:radscan_lite" \
+    --add-data "app.py:." \
+    --add-data "radscan_lite:radscan_lite" \
     --hidden-import pydicom \
     --hidden-import pydicom.datadict \
     --hidden-import pydicom.tag \
@@ -39,8 +37,7 @@ pyinstaller --clean \
     --hidden-import pandas \
     --hidden-import PIL \
     --hidden-import pydantic \
-    ../run_radscan.py
+    run_radscan.py
 
 echo "=== Build complete!"
-echo "Executable: $(pwd)/dist/RadScanLite"
-echo "Bundle:     $(pwd)/dist/RadScanLite.app (if created)"
+echo "Bundle: $ROOT_DIR/dist/RadScanLite.app"

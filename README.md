@@ -67,7 +67,7 @@ Then open [http://localhost:8501](http://localhost:8501).
 
 ### Option 4: Standalone Executable
 
-Build a single-file executable with PyInstaller:
+Downloadable release artifacts can be built by GitHub Actions, or built locally with PyInstaller:
 
 | Platform | Command | Output |
 |---|---|---|
@@ -81,6 +81,8 @@ Prerequisite:
 python -m pip install -e ".[packaging]"
 ```
 
+See [docs/DESKTOP_RELEASES.md](docs/DESKTOP_RELEASES.md) for release artifact details.
+
 ## Repository Guide
 
 | Path | Purpose |
@@ -92,6 +94,7 @@ python -m pip install -e ".[packaging]"
 | `radscan_lite/reporting.py` | JSON/CSV report generation |
 | `scripts/generate_synthetic_data.py` | Synthetic demo-data generator |
 | `demo_assets/` | Screenshots, demo ZIP, and sample reports |
+| `docs/DESKTOP_RELEASES.md` | Native desktop release build notes |
 | `tests/` | Scanner and security regression tests |
 
 ## Test Commands

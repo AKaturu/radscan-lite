@@ -1,0 +1,94 @@
+name: Desktop release
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  build:
+    name: Build ${{ matrix.platform }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - platform: windows
+            os: windows-latest
+            artifact: radscan-lite-windows
+          - platform: linux
+            os: ubuntu-latest
+            artifact: radscan-lite-linux
+          - platform: macos
+            os: macos-13
+            artifact: radscan-lite-macos
+
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Build Windows executable
+        if: matrix.platform == 'windows'
+        shell: cmd
+        run: packaging\build_windows.bat
+
+      - name: Build Linux executable
+        if: matrix.platform == 'linux'
+        run: bash packaging/build_linux.sh
+
+      - name: Build macOS app
+        if: matrix.platform == 'macos'
+        run: bash packaging/build_macos.sh
+
+      - name: Smoke test Windows launcher
+        if: matrix.platform == 'windows'
+        shell: pwsh
+        run: .\dist\RadScanLite.exe --self-check
+
+      - name: Smoke test Linux launcher
+        if: matrix.platform == 'linux'
+        run: ./dist/RadScanLite --self-check
+
+      - name: Smoke test macOS launcher
+        if: matrix.platform == 'macos'
+        run: ./dist/RadScanLite.app/Contents/MacOS/RadScanLite --self-check
+
+      - name: Package Windows artifact
+        if: matrix.platform == 'windows'
+        shell: pwsh
+        run: Compress-Archive -Path dist/RadScanLite.exe -DestinationPath dist/${{ matrix.artifact }}.zip
+
+      - name: Package Linux artifact
+        if: matrix.platform == 'linux'
+        run: tar -czf dist/${{ matrix.artifact }}.tar.gz -C dist RadScanLite
+
+      - name: Package macOS artifact
+        if: matrix.platform == 'macos'
+        run: hdiutil create -volname RadScanLite -srcfolder dist/RadScanLite.app -ov -format UDZO dist/${{ matrix.artifact }}.dmg
+
+      - name: Upload Windows artifact
+        if: matrix.platform == 'windows'
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.artifact }}
+          path: dist/${{ matrix.artifact }}.zip
+
+      - name: Upload Linux artifact
+        if: matrix.platform == 'linux'
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.artifact }}
+          path: dist/${{ matrix.artifact }}.tar.gz
+
+      - name: Upload macOS artifact
+        if: matrix.platform == 'macos'
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.artifact }}
+          path: dist/${{ matrix.artifact }}.dmg

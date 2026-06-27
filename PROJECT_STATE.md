@@ -9,7 +9,7 @@ RadScan Lite — DICOM Dataset Preflight Scanner
 A local, read-only DICOM dataset scanner for radiology researchers that inspects files for structural problems, series inconsistencies, duplicate identifiers, pixel decoding failures, and potential privacy risks.
 
 ### Current Status
-Phase 8 (GitHub polish) - Complete. Core scanner remains validated and repository presentation has been refreshed.
+Phase 9 (GitHub polish plus desktop release packaging) - Complete. Core scanner remains validated and repository presentation has been refreshed.
 
 ---
 
@@ -45,6 +45,13 @@ The development dependency set now includes `pytest-cov`, CI runs coverage-gated
 #### Tests Added
 No new scanner tests were needed; this roadmap item strengthens test reporting and CI enforcement.
 
+### Feature: Desktop Release Packaging
+#### Validation
+Local PyInstaller scripts now run from the repository root or from CI, the frozen launcher uses Streamlit directly instead of shelling out to a Python interpreter, and GitHub Actions can build Windows ZIP, macOS DMG, and Linux tar.gz artifacts.
+
+#### Tests Added
+Release workflow includes packaged launcher `--self-check` smoke tests.
+
 ---
 
 ## Current Work
@@ -53,7 +60,7 @@ No new scanner tests were needed; this roadmap item strengthens test reporting a
 N/A — All features complete.
 
 ### Progress
-100%. README, contribution/security docs, package metadata, CI branch targeting, and coverage reporting have been refreshed for the public GitHub repository.
+100%. README, contribution/security docs, package metadata, CI branch targeting, coverage reporting, and desktop release packaging have been refreshed for the public GitHub repository.
 
 ### Remaining Work
 None
@@ -63,8 +70,9 @@ None
 ## Next Actions
 
 1. Run `streamlit run app.py` to manually verify the UI before tagged releases.
-2. Publish to PyPI when release artifacts are ready.
-3. Keep coverage reporting above the CI floor as the scanner grows.
+2. Cut a version tag such as `v0.1.0` to trigger the desktop release workflow and attach artifacts to a GitHub Release.
+3. Publish to PyPI when release artifacts are ready.
+4. Keep coverage reporting above the CI floor as the scanner grows.
 
 ---
 
@@ -85,4 +93,4 @@ None
 
 ## Resume Instructions
 
-Start here: `app.py` is the Streamlit entry point. The core logic lives in `radscan_lite/`. Run `python -m ruff check radscan_lite tests scripts`, `python -m mypy radscan_lite`, and `python -m pytest -q` to verify the repository. Run `streamlit run app.py` to launch the UI. The synthetic data generation script is at `scripts/generate_synthetic_data.py`.
+Start here: `app.py` is the Streamlit entry point. The core logic lives in `radscan_lite/`. Run `python -m ruff check radscan_lite tests scripts`, `python -m mypy radscan_lite`, and `python -m pytest -q` to verify the repository. Run `streamlit run app.py` to launch the UI. The synthetic data generation script is at `scripts/generate_synthetic_data.py`. Desktop release details are in `docs/DESKTOP_RELEASES.md`.
