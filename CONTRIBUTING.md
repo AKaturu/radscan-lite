@@ -16,7 +16,7 @@ Run:
 ```bash
 python -m ruff check radscan_lite tests scripts
 python -m mypy radscan_lite
-python -m pytest -q
+python -m pytest -q --cov=radscan_lite --cov-report=term-missing --cov-fail-under=80
 ```
 
 ## Contribution Rules

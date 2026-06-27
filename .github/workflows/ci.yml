@@ -30,4 +30,4 @@ jobs:
           mypy radscan_lite/
       - name: Test with pytest
         run: |
-          pytest -q
+          pytest -q --cov=radscan_lite --cov-report=term-missing --cov-fail-under=80

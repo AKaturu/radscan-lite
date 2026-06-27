@@ -38,6 +38,13 @@ Archive security tests pass: normal extraction, empty ZIP, compression ratio lim
 #### Validation
 CSV and JSON reports generate correctly. PHI values are confirmed absent from all reports.
 
+### Feature: Coverage Reporting Gate
+#### Validation
+The development dependency set now includes `pytest-cov`, CI runs coverage-gated tests on Python 3.11 and 3.12, and README/CONTRIBUTING commands match the enforced coverage gate.
+
+#### Tests Added
+No new scanner tests were needed; this roadmap item strengthens test reporting and CI enforcement.
+
 ---
 
 ## Current Work
@@ -46,7 +53,7 @@ CSV and JSON reports generate correctly. PHI values are confirmed absent from al
 N/A — All features complete.
 
 ### Progress
-100%. README, contribution/security docs, package metadata, and CI branch targeting have been refreshed for the public GitHub repository.
+100%. README, contribution/security docs, package metadata, CI branch targeting, and coverage reporting have been refreshed for the public GitHub repository.
 
 ### Remaining Work
 None
@@ -57,7 +64,7 @@ None
 
 1. Run `streamlit run app.py` to manually verify the UI before tagged releases.
 2. Publish to PyPI when release artifacts are ready.
-3. Add coverage reporting if future changes expand the core scanner.
+3. Keep coverage reporting above the CI floor as the scanner grows.
 
 ---
 

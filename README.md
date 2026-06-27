@@ -99,7 +99,7 @@ python -m pip install -e ".[packaging]"
 ```bash
 python -m ruff check radscan_lite tests scripts
 python -m mypy radscan_lite
-python -m pytest -q
+python -m pytest -q --cov=radscan_lite --cov-report=term-missing --cov-fail-under=80
 ```
 
 Optional coverage:
@@ -108,7 +108,7 @@ Optional coverage:
 python -m pytest -q --cov=radscan_lite
 ```
 
-GitHub Actions runs linting, type checks, and tests on Python 3.11 and 3.12.
+GitHub Actions runs linting, type checks, and coverage-gated tests on Python 3.11 and 3.12.
 
 ## Privacy and Security
 
