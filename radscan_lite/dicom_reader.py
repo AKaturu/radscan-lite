@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import hashlib
 from pathlib import Path
-from typing import Optional
+from typing import Any, Optional, cast
 
 import pydicom
 from pydicom.errors import InvalidDicomError
@@ -121,8 +121,8 @@ def _get_int(ds: pydicom.dataset.Dataset, tag: str) -> Optional[int]:
         return None
     try:
         if isinstance(val, (list, tuple)):
-            return int(val[0])
-        return int(val)
+            return int(cast(Any, val[0]))
+        return int(cast(Any, val))
     except (ValueError, TypeError):
         return None
 

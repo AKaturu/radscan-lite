@@ -9,7 +9,7 @@ RadScan Lite — DICOM Dataset Preflight Scanner
 A local, read-only DICOM dataset scanner for radiology researchers that inspects files for structural problems, series inconsistencies, duplicate identifiers, pixel decoding failures, and potential privacy risks.
 
 ### Current Status
-Phase 7 (Validation) — Complete. All 29 tests pass.
+Phase 8 (GitHub polish) - Complete. Core scanner remains validated and repository presentation has been refreshed.
 
 ---
 
@@ -46,7 +46,7 @@ CSV and JSON reports generate correctly. PHI values are confirmed absent from al
 N/A — All features complete.
 
 ### Progress
-100%
+100%. README, contribution/security docs, package metadata, and CI branch targeting have been refreshed for the public GitHub repository.
 
 ### Remaining Work
 None
@@ -55,10 +55,9 @@ None
 
 ## Next Actions
 
-1. Run `streamlit run app.py` to manually verify the UI
-2. Publish to PyPI
-3. Add coverage reporting
-4. Add Dockerfile
+1. Run `streamlit run app.py` to manually verify the UI before tagged releases.
+2. Publish to PyPI when release artifacts are ready.
+3. Add coverage reporting if future changes expand the core scanner.
 
 ---
 
@@ -79,4 +78,4 @@ None
 
 ## Resume Instructions
 
-Start here: `app.py` is the Streamlit entry point. The core logic lives in `radscan_lite/`. Run `pytest -q` to verify all tests pass. Run `streamlit run app.py` to launch the UI. The synthetic data generation script is at `scripts/generate_synthetic_data.py`.
+Start here: `app.py` is the Streamlit entry point. The core logic lives in `radscan_lite/`. Run `python -m ruff check radscan_lite tests scripts`, `python -m mypy radscan_lite`, and `python -m pytest -q` to verify the repository. Run `streamlit run app.py` to launch the UI. The synthetic data generation script is at `scripts/generate_synthetic_data.py`.

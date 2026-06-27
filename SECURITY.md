@@ -8,7 +8,7 @@
 
 ## Reporting a Vulnerability
 
-Please open a GitHub issue for any security concerns. Do not include PHI or real patient data in any report.
+Use GitHub private vulnerability reporting when available. If it is not available, open a minimal public issue that does not include PHI, real DICOM files, credentials, private paths, or institutional details.
 
 ## Security Design
 

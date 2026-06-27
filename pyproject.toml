@@ -9,6 +9,7 @@ description = "Local, read-only DICOM dataset preflight scanner for radiology re
 readme = "README.md"
 license = { file = "LICENSE" }
 requires-python = ">=3.11"
+authors = [{ name = "Abinav Katuru" }]
 dependencies = [
     "pydicom>=2.4",
     "streamlit>=1.28",
@@ -31,6 +32,11 @@ desktop = ["pywebview>=4.0"]
 [project.scripts]
 radscan-lite = "run_radscan:main"
 
+[project.urls]
+Homepage = "https://github.com/AKaturu/radscan-lite"
+Documentation = "https://github.com/AKaturu/radscan-lite#readme"
+Issues = "https://github.com/AKaturu/radscan-lite/issues"
+
 [tool.ruff]
 target-version = "py311"
 line-length = 120
@@ -43,9 +49,10 @@ select = ["E", "F", "W", "I"]
 "tests/**" = ["E402", "E501"]
 
 [tool.mypy]
-python_version = "3.11"
+python_version = "3.12"
 strict = false
 ignore_missing_imports = true
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+addopts = "-ra"

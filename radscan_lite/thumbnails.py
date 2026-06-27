@@ -28,10 +28,10 @@ def generate_thumbnail(
     if pixel_array.ndim < 2 or pixel_array.size == 0:
         return None
 
-    image = _convert_to_8bit(pixel_array, ds)
+    image_array = _convert_to_8bit(pixel_array, ds)
 
-    image = Image.fromarray(image)
-    image.thumbnail(max_size, Image.LANCZOS)
+    image = Image.fromarray(image_array)
+    image.thumbnail(max_size, Image.Resampling.LANCZOS)
 
     buf = BytesIO()
     image.save(buf, format="PNG")
