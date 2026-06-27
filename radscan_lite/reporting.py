@@ -112,6 +112,8 @@ def _report_to_dict(report: ScanReport) -> dict[str, Any]:
         )
 
     return {
+        "profile_name": report.profile_name,
+        "profile_description": report.profile_description,
         "scan_timestamp": report.scan_timestamp,
         "files_analyzed": report.files_analyzed,
         "valid_dicom_count": report.valid_dicom_count,

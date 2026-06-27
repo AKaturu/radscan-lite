@@ -77,6 +77,8 @@ class StudyResult(BaseModel):
 
 
 class ScanReport(BaseModel):
+    profile_name: str = "full"
+    profile_description: str = "Run and report all structural, series, dataset, and privacy checks."
     dataset_findings: list[Finding] = Field(default_factory=list)
     study_results: list[StudyResult] = Field(default_factory=list)
     files_analyzed: int = 0

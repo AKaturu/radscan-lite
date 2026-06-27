@@ -27,6 +27,16 @@ RadScan Lite inspects DICOM folders and ZIP archives for structural problems, se
 | Privacy review | PHI field presence, private tags, burned-in annotation flags, de-identification metadata |
 | Archive safety | ZIP path traversal prevention, compression-ratio limits, temporary cleanup |
 
+## Check Profiles
+
+The dashboard includes built-in check profiles:
+
+| Profile | Use |
+|---|---|
+| `full` | Report all structural, series, dataset, and privacy findings. |
+| `structure-only` | Hide privacy-review rules when a workflow only needs DICOM structure checks. |
+| `sharing-review` | Emphasize privacy-related findings before sharing a dataset outside the local team. |
+
 ## Download and Install
 
 ### Option 1: One-Click Install

@@ -270,7 +270,7 @@ researcher-friendly Streamlit interface.
 - Multi-frame thumbnail support for volumetric series
 - Structured report export (DICOM SR)
 - Bulk study comparison across multiple datasets
-- Configurable check profiles for different research contexts
+- Configurable check profiles for different research contexts (implemented in the dashboard as `full`, `structure-only`, and `sharing-review` profiles)
 - Integration with HIPAA Safe Harbor and Expert Determination workflows
 
 ## 8. Conclusion

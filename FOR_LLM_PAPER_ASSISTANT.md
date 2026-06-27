@@ -212,7 +212,7 @@ Source code grep confirms PHI exists only in test data generator.
 - Multi-frame thumbnails
 - DICOM SR export
 - Bulk study comparison
-- Configurable check profiles
+- Configurable check profiles (implemented in the dashboard as `full`, `structure-only`, and `sharing-review` profiles)
 - HIPAA workflow integration
 
 ## 8. Conclusion

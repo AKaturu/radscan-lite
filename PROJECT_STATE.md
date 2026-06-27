@@ -9,7 +9,7 @@ RadScan Lite — DICOM Dataset Preflight Scanner
 A local, read-only DICOM dataset scanner for radiology researchers that inspects files for structural problems, series inconsistencies, duplicate identifiers, pixel decoding failures, and potential privacy risks.
 
 ### Current Status
-Phase 9 (GitHub polish plus desktop release packaging) - Complete. Core scanner remains validated and repository presentation has been refreshed.
+Phase 10 (configurable check profiles) - Complete. Core scanner remains validated, repository presentation has been refreshed, and the dashboard now supports context-specific report profiles.
 
 ---
 
@@ -52,6 +52,13 @@ Local PyInstaller scripts now run from the repository root or from CI, the froze
 #### Tests Added
 Release workflow includes packaged launcher `--self-check` smoke tests.
 
+### Feature: Configurable Check Profiles
+#### Validation
+The scanner now supports built-in `full`, `structure-only`, and `sharing-review` profiles. Profiles are applied as a report overlay so raw scanning remains read-only and unchanged; the dashboard exposes the profile selector before scanning, JSON reports record the active profile, and reports respect suppressed privacy rules or severity overrides.
+
+#### Tests Added
+- `TestScanProfiles` verifies that `structure-only` suppresses `PRIV-*` findings from CSV/JSON reports and that `sharing-review` raises private-tag findings to warning severity.
+
 ---
 
 ## Current Work
@@ -60,7 +67,7 @@ Release workflow includes packaged launcher `--self-check` smoke tests.
 N/A — All features complete.
 
 ### Progress
-100%. README, contribution/security docs, package metadata, CI branch targeting, coverage reporting, and desktop release packaging have been refreshed for the public GitHub repository.
+100%. README, contribution/security docs, package metadata, CI branch targeting, coverage reporting, desktop release packaging, and configurable check profiles have been refreshed for the public GitHub repository.
 
 ### Remaining Work
 None
@@ -73,6 +80,7 @@ None
 2. Cut a version tag such as `v0.1.0` to trigger the desktop release workflow and attach artifacts to a GitHub Release.
 3. Publish to PyPI when release artifacts are ready.
 4. Keep coverage reporting above the CI floor as the scanner grows.
+5. Consider a future custom profile file format if users need site-specific rule overrides beyond the built-in profiles.
 
 ---
 

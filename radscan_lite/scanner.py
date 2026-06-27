@@ -15,11 +15,13 @@ from radscan_lite.models import (
     StudyResult,
 )
 from radscan_lite.privacy_checks import run_privacy_checks
+from radscan_lite.profiles import ScanProfile, apply_scan_profile
 from radscan_lite.series_checks import run_series_checks
 
 
 def scan_directory(
     directory: str | Path,
+    profile: str | ScanProfile | None = None,
 ) -> ScanReport:
     scan_dir = Path(directory)
 
@@ -112,7 +114,7 @@ def scan_directory(
         missing_study_series_ids=missing_ids,
     )
 
-    return report
+    return apply_scan_profile(report, profile)
 
 
 def _discover_candidates(directory: Path) -> list[Path]:

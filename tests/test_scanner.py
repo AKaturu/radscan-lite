@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 import os
 import sys
 import zipfile
@@ -13,6 +14,7 @@ from radscan_lite.dicom_reader import has_dicm_prefix, read_file_result
 from radscan_lite.file_checks import run_file_checks
 from radscan_lite.models import FileResult, Severity
 from radscan_lite.privacy_checks import run_privacy_checks
+from radscan_lite.profiles import apply_scan_profile
 from radscan_lite.reporting import generate_csv_report, generate_json_report
 from radscan_lite.scanner import scan_directory
 from radscan_lite.series_checks import run_series_checks
@@ -398,6 +400,28 @@ class TestReporting:
         assert "scan_timestamp" in json_output
         assert "files_analyzed" in json_output
         assert "studies" in json_output
+        assert json.loads(json_output)["profile_name"] == "full"
+
+
+class TestScanProfiles:
+    def test_structure_only_profile_suppresses_privacy_findings(self, synthetic_dataset):
+        report = scan_directory(synthetic_dataset, profile="structure-only")
+        csv_output = generate_csv_report(report)
+        json_output = generate_json_report(report)
+
+        assert report.profile_name == "structure-only"
+        assert "PRIV-" not in csv_output
+        assert "PRIV-" not in json_output
+
+    def test_sharing_review_profile_overrides_private_tag_severity(self, synthetic_dataset):
+        full_report = scan_directory(synthetic_dataset)
+        profiled = apply_scan_profile(full_report, "sharing-review")
+
+        private_tag_findings = [
+            f for f in profiled.dataset_findings if f.rule_id == "PRIV-PRIVATE_TAGS"
+        ]
+        assert private_tag_findings
+        assert {f.severity for f in private_tag_findings} == {Severity.WARNING}
 
 
 class TestMultiframe:

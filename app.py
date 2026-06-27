@@ -6,6 +6,7 @@ import tempfile
 import streamlit as st
 
 from radscan_lite.archive_security import cleanup_temp_dir, safe_extract_zip
+from radscan_lite.profiles import BUILT_IN_PROFILES
 from radscan_lite.reporting import generate_csv_report, generate_json_report
 from radscan_lite.scanner import scan_directory
 from radscan_lite.thumbnails import generate_thumbnail
@@ -56,6 +57,14 @@ _uploaded_files = st.file_uploader(
     accept_multiple_files=True,
 )
 
+profile_name = st.sidebar.selectbox(
+    "Check profile",
+    options=list(BUILT_IN_PROFILES),
+    index=0,
+    format_func=lambda name: name.replace("-", " ").title(),
+)
+st.sidebar.caption(BUILT_IN_PROFILES[profile_name].description)
+
 if _uploaded_files:
     temp_dir = tempfile.mkdtemp(prefix="radscan_upload_")
     st.session_state.temp_dir = temp_dir
@@ -90,7 +99,7 @@ if _uploaded_files:
                     else:
                         shutil.copy2(s, d)
 
-        st.session_state.report = scan_directory(combined_dir)
+        st.session_state.report = scan_directory(combined_dir, profile=profile_name)
         st.session_state.scan_complete = True
 
 if st.session_state.scan_complete and st.session_state.report:
@@ -260,6 +269,5 @@ if st.button("Clear & Start Over"):
     st.session_state.report = None
     st.session_state.scan_complete = False
     st.rerun()
-
 
 
