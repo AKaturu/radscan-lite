@@ -2,12 +2,11 @@ from __future__ import annotations
 
 import os
 import sys
-import tempfile
 import zipfile
 
-import pytest
 import pydicom
-from pydicom.uid import ExplicitVRLittleEndian, generate_uid
+import pytest
+from pydicom.uid import generate_uid
 
 from radscan_lite.archive_security import cleanup_temp_dir, safe_extract_zip
 from radscan_lite.dicom_reader import has_dicm_prefix, read_file_result
@@ -360,7 +359,7 @@ class TestArchiveSecurity:
 
     def test_empty_zip(self, temp_output_dir):
         zip_path = os.path.join(temp_output_dir, "empty.zip")
-        with zipfile.ZipFile(zip_path, "w") as zf:
+        with zipfile.ZipFile(zip_path, "w"):
             pass
         extract_dir = safe_extract_zip(zip_path)
         assert os.path.isdir(extract_dir)

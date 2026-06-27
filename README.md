@@ -4,17 +4,47 @@ A local, read-only DICOM dataset preflight scanner for radiology researchers. In
 
 > **Not a medical device. Does not diagnose disease. Does not establish HIPAA compliance.**
 
-## Screenshot
+## Download & Install
 
-*(Insert screenshot here)*
+### Option 1: One-Click Install (requires Python 3.11+)
 
-## Installation
+| Platform | How to Install |
+|----------|---------------|
+| **Windows** | Double-click `install.bat` or run in terminal: `install.bat` |
+| **macOS / Linux** | Run in terminal: `chmod +x install.sh && ./install.sh` |
+
+The installer will verify Python, create a virtual environment, install dependencies, and launch the app.
+
+### Option 2: pip Install (any platform)
 
 ```bash
 pip install radscan-lite
+streamlit run app.py
 ```
 
-For development:
+Or use the launcher: `radscan-lite`
+
+### Option 3: Docker
+
+```bash
+docker build -t radscan-lite .
+docker run -p 8501:8501 radscan-lite
+```
+Then open http://localhost:8501
+
+### Option 4: Standalone Executable (no Python required)
+
+Build a single-file executable with PyInstaller:
+
+| Platform | Command | Output |
+|----------|---------|--------|
+| Windows | `packaging\build_windows.bat` | `dist\RadScanLite.exe` |
+| macOS | `bash packaging/build_macos.sh` | `dist/RadScanLite.app` |
+| Linux | `bash packaging/build_linux.sh` | `dist/RadScanLite` |
+
+Prerequisites: `pip install pyinstaller`
+
+## Installation (Development)
 
 ```bash
 git clone <repo-url>
@@ -22,11 +52,7 @@ cd radscan-lite
 pip install -e ".[dev]"
 ```
 
-Optional JPEG-LS / JPEG-2000 support:
-
-```bash
-pip install "radscan-lite[pylibjpeg]"
-```
+Optional JPEG-LS / JPEG-2000 support: `pip install "radscan-lite[pylibjpeg]"`
 
 ## Local Execution
 

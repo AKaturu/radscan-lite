@@ -5,7 +5,6 @@ from pydicom.dataset import Dataset
 
 from radscan_lite.models import FileResult, Finding, Scope, Severity
 
-
 _PHI_KEYWORDS = [
     "PatientName",
     "PatientID",

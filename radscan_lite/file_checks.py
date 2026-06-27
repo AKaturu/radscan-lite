@@ -27,7 +27,7 @@ def _check_readable_dicom(result: FileResult, findings: list[Finding]) -> None:
                 rule_id="FILE-001",
                 severity=Severity.ERROR,
                 scope=Scope.FILE,
-                message=f"File is not a readable DICOM file",
+                message="File is not a readable DICOM file",
                 remediation="Verify the file is a valid DICOM Part 10 file or raw DICOM dataset",
                 affected_file_count=1,
             )
@@ -43,7 +43,7 @@ def _check_dicm_prefix(result: FileResult, findings: list[Finding]) -> None:
                     rule_id="FILE-002",
                     severity=Severity.INFO,
                     scope=Scope.FILE,
-                    message=f"File does not have DICM prefix (may be a non-Part-10 DICOM file)",
+                    message="File does not have DICM prefix (may be a non-Part-10 DICOM file)",
                     remediation="Consider converting to standard Part 10 format for broader compatibility",
                     affected_file_count=1,
                 )

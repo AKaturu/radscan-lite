@@ -2,15 +2,33 @@ from __future__ import annotations
 
 import os
 import tempfile
-import zipfile
-from pathlib import Path
 
 import streamlit as st
 
-from radscan_lite.archive_security import safe_extract_zip, cleanup_temp_dir
+from radscan_lite.archive_security import cleanup_temp_dir, safe_extract_zip
 from radscan_lite.reporting import generate_csv_report, generate_json_report
 from radscan_lite.scanner import scan_directory
 from radscan_lite.thumbnails import generate_thumbnail
+
+
+def _collect_all_findings(report):
+    findings = list(report.dataset_findings)
+    for study in report.study_results:
+        findings.extend(study.study_findings)
+        for series in study.series_results:
+            findings.extend(series.series_findings)
+            for fr in series.file_results:
+                findings.extend(fr.findings)
+    return findings
+
+
+def _collect_all_file_results(report):
+    results = []
+    for study in report.study_results:
+        for series in study.series_results:
+            results.extend(series.file_results)
+    return results
+
 
 st.set_page_config(
     page_title="RadScan Lite",
@@ -18,7 +36,7 @@ st.set_page_config(
     layout="wide",
 )
 
-st.title("RadScan Lite — DICOM Dataset Preflight Scanner")
+st.title("RadScan Lite - DICOM Dataset Preflight Scanner")
 st.markdown(
     "Upload DICOM files or a ZIP archive for structural and privacy preflight scanning. "
     "No data is persisted or transmitted."
@@ -244,22 +262,4 @@ if st.button("Clear & Start Over"):
     st.rerun()
 
 
-def _collect_all_findings(report):
-    """Collect all findings from a report into a flat list."""
-    findings = list(report.dataset_findings)
-    for study in report.study_results:
-        findings.extend(study.study_findings)
-        for series in study.series_results:
-            findings.extend(series.series_findings)
-            for fr in series.file_results:
-                findings.extend(fr.findings)
-    return findings
 
-
-def _collect_all_file_results(report):
-    """Collect all file results from a report into a flat list."""
-    results = []
-    for study in report.study_results:
-        for series in study.series_results:
-            results.extend(series.file_results)
-    return results

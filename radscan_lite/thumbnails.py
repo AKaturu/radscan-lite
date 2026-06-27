@@ -4,6 +4,7 @@ from io import BytesIO
 from typing import Optional
 
 import numpy as np
+import pydicom
 from PIL import Image
 
 from radscan_lite.models import FileResult
@@ -17,8 +18,6 @@ def generate_thumbnail(
         return None
     if file_result.pixel_decoding_success is not True:
         return None
-
-    import pydicom
 
     try:
         ds = pydicom.dcmread(file_result.path, force=True)

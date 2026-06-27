@@ -1,11 +1,9 @@
 from __future__ import annotations
 
 import os
-import shutil
 import tempfile
 
 import numpy as np
-import pydicom
 from pydicom.dataset import Dataset, FileMetaDataset
 from pydicom.uid import ExplicitVRLittleEndian, generate_uid
 
@@ -202,6 +200,6 @@ if __name__ == "__main__":
     out = tempfile.mkdtemp(prefix="radscan_synthetic_")
     generate_dataset(out)
     print(f"Synthetic data generated at: {out}")
-    print(f"  - Clean series (5 files)")
-    print(f"  - Inconsistent series (5 files)")
-    print(f"  - Privacy-warning series (5 files)")
+    print("  - Clean series (5 files)")
+    print("  - Inconsistent series (5 files)")
+    print("  - Privacy-warning series (5 files)")

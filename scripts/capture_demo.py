@@ -4,8 +4,6 @@ import json
 import os
 import sys
 import tempfile
-import time
-from pathlib import Path
 
 # Add scripts dir to path
 scripts_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), "scripts")
@@ -13,6 +11,7 @@ if scripts_dir not in sys.path:
     sys.path.insert(0, scripts_dir)
 
 from generate_synthetic_data import generate_dataset
+
 from radscan_lite.reporting import generate_csv_report, generate_json_report
 from radscan_lite.scanner import scan_directory
 
@@ -85,7 +84,7 @@ def run_demo(output_dir: str) -> dict:
     shutil.rmtree(data_dir, ignore_errors=True)
 
     print(f"\n{'='*60}")
-    print(f"  RadScan Lite — Demo Results")
+    print("  RadScan Lite — Demo Results")
     print(f"{'='*60}")
     print(f"  Files analyzed:     {summary['files_analyzed']}")
     print(f"  Valid DICOM:        {summary['valid_dicom_count']}")
@@ -95,7 +94,7 @@ def run_demo(output_dir: str) -> dict:
     print(f"  Patients detected:  {summary['patient_count']}")
     print(f"  Total findings:     {result['total_findings']}")
     print(f"{'='*60}")
-    print(f"  Findings by severity:")
+    print("  Findings by severity:")
     for sev, count in sorted(severity_counts.items()):
         print(f"    {sev:20s}: {count}")
     print(f"{'='*60}")

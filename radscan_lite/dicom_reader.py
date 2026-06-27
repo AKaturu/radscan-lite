@@ -9,7 +9,6 @@ from pydicom.errors import InvalidDicomError
 
 from radscan_lite.models import FileResult
 
-
 _DICM_MARKER = b"DICM"
 
 

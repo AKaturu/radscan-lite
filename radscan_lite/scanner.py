@@ -1,9 +1,7 @@
 from __future__ import annotations
 
-import hashlib
 from collections import defaultdict
 from pathlib import Path
-from typing import Optional
 
 from radscan_lite.dicom_reader import read_file_result
 from radscan_lite.file_checks import run_file_checks
@@ -12,8 +10,8 @@ from radscan_lite.models import (
     Finding,
     ScanReport,
     Scope,
-    Severity,
     SeriesResult,
+    Severity,
     StudyResult,
 )
 from radscan_lite.privacy_checks import run_privacy_checks
@@ -41,8 +39,6 @@ def scan_directory(
 
     for result in invalid_files:
         result.findings = run_file_checks(result)
-
-    all_results = file_results + invalid_files
 
     studies: dict[str, list[FileResult]] = defaultdict(list)
     for result in file_results:
