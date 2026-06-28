@@ -10,11 +10,22 @@ RadScan Lite inspects DICOM folders and ZIP archives for structural problems, se
 
 > Not a medical device. Does not diagnose disease. Does not establish HIPAA compliance. All findings require appropriate local review.
 
+![RadScan Lite synthetic demo](demo_assets/demo.gif)
+
 ## Screenshots
 
 | Scan Results | Findings | Privacy Review |
 |---|---|---|
 | ![Scan results](demo_assets/02_scan_results.png) | ![Findings](demo_assets/03_findings.png) | ![Privacy warnings](demo_assets/04_privacy_warnings.png) |
+
+The compiled demo clip is generated from a synthetic DICOM scenario. To regenerate it:
+
+```bash
+python -m pip install -e ".[media]"
+python scripts/generate_demo_media.py
+```
+
+See [docs/DEMO_MEDIA.md](docs/DEMO_MEDIA.md) for the asset policy.
 
 ## What It Checks
 

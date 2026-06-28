@@ -59,6 +59,13 @@ The scanner now supports built-in `full`, `structure-only`, and `sharing-review`
 #### Tests Added
 - `TestScanProfiles` verifies that `structure-only` suppresses `PRIV-*` findings from CSV/JSON reports and that `sharing-review` raises private-tag findings to warning severity.
 
+### Feature: Stable GitHub Demo Media
+#### Validation
+Added `scripts/generate_demo_media.py`, README demo GIF wiring, and `docs/DEMO_MEDIA.md`. The generator renders synthetic-only stable demo media under `demo_assets/` without depending on patient data.
+
+#### Tests Added
+No scanner tests were needed; the media generator is validated by executing it and checking the output assets.
+
 ---
 
 ## Current Work
@@ -67,7 +74,7 @@ The scanner now supports built-in `full`, `structure-only`, and `sharing-review`
 N/A — All features complete.
 
 ### Progress
-100%. README, contribution/security docs, package metadata, CI branch targeting, coverage reporting, desktop release packaging, and configurable check profiles have been refreshed for the public GitHub repository.
+100%. README, contribution/security docs, package metadata, CI branch targeting, coverage reporting, desktop release packaging, configurable check profiles, and stable demo media have been refreshed for the public GitHub repository.
 
 ### Remaining Work
 None

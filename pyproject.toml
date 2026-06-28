@@ -29,6 +29,7 @@ dev = [
 pylibjpeg = ["pylibjpeg>=1.4", "pylibjpeg-libjpeg>=2.0"]
 packaging = ["pyinstaller>=6.0"]
 desktop = ["pywebview>=4.0"]
+media = ["imageio>=2.34", "imageio-ffmpeg>=0.5"]
 
 [project.scripts]
 radscan-lite = "run_radscan:main"
