@@ -57,7 +57,12 @@ def safe_extract_zip(
                 )
 
             dest = Path(extract_dir) / info.filename
-            dest.resolve().relative_to(Path(extract_dir).resolve())
+            try:
+                dest.resolve().relative_to(Path(extract_dir).resolve())
+            except ValueError:
+                raise ValueError(
+                    f"Path traversal detected in archive entry: {info.filename}"
+                )
             dest.parent.mkdir(parents=True, exist_ok=True)
             try:
                 zf.extract(info, extract_dir)

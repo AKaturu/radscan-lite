@@ -311,7 +311,7 @@ Findings by severity:
 
 ---
 
-## FILE LOCATIONS (all under `C:\Users\Abinav Katuru\radscan-lite\`)
+## FILE LOCATIONS (all under `C:\Users\Abhinav Katuru\radscan-lite\`)
 
 ### Source Code
 - `radscan_lite/__init__.py` — Package init

@@ -48,7 +48,6 @@ def scan_directory(
         studies[uid].append(result)
 
     study_results: list[StudyResult] = []
-    missing_ids: list[str] = []
 
     for study_uid, study_files in studies.items():
         series_groups: dict[str, list[FileResult]] = defaultdict(list)

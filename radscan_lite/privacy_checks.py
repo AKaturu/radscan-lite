@@ -1,7 +1,9 @@
 from __future__ import annotations
 
 import pydicom
+from pydicom.datadict import tag_for_keyword
 from pydicom.dataset import Dataset
+from pydicom.tag import Tag
 
 from radscan_lite.models import FileResult, Finding, Scope, Severity
 
@@ -63,9 +65,6 @@ def _check_phi_tag(
     keyword: str,
     findings: list[Finding],
 ) -> None:
-    from pydicom.datadict import tag_for_keyword
-    from pydicom.tag import Tag
-
     tag_val = tag_for_keyword(keyword)
     if tag_val is None:
         return
@@ -96,8 +95,6 @@ def _check_phi_tag(
 def _get_tag_value(
     ds: Dataset, keyword: str
 ) -> str | None:
-    from pydicom.datadict import tag_for_keyword
-    from pydicom.tag import Tag
 
     tag_val = tag_for_keyword(keyword)
     if tag_val is None:

@@ -4,6 +4,8 @@
 [![Python](https://img.shields.io/badge/python-3.11%2B-blue.svg)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
+> **Validation status:** Software functionality has been tested using synthetic data. This project has not undergone clinical validation.
+
 A local, read-only DICOM dataset preflight scanner for radiology researchers.
 
 RadScan Lite inspects DICOM folders and ZIP archives for structural problems, series inconsistencies, duplicate identifiers, pixel decoding failures, and potential privacy risks before a dataset is shared, analyzed, or used in research tooling.
