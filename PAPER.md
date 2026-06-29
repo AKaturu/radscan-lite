@@ -1,11 +1,14 @@
 # RadScan Lite: A Local, Read-Only DICOM Dataset Preflight Scanner
 
+**Draft manuscript - not peer reviewed and not submitted. Results are derived from synthetic
+test data unless otherwise stated.**
+
 ## Abstract
 
 Medical imaging datasets acquired for research often contain structural inconsistencies,
 duplicate identifiers, pixel decoding anomalies, and residual protected health information
 (PHI). Existing validation tools are either proprietary, require network connectivity, or
-lack comprehensive privacy-scanner features. We present **RadScan Lite**, an open-source
+do not provide the same lightweight local preflight workflow. We present **RadScan Lite**, an open-source
 Python application that performs local, read-only preflight scanning of DICOM datasets.
 RadScan Lite inspects files at three granularities — per-file, per-series, and
 per-dataset — and surfaces findings using accessible severity labels (PASS, INFO,
@@ -13,9 +16,9 @@ WARNING, ERROR, MANUAL REVIEW). It detects PHI field presence without exposing
 values, flags BurnedInAnnotation states with clinically appropriate severity, and
 generates downloadable CSV and JSON reports. We evaluate the system on a synthetic
 15-file dataset spanning clean, inconsistent, and privacy-sensitive series. RadScan Lite
-correctly identifies all seeded issues (inconsistent dimensions, mixed modalities,
-duplicate instance numbers, PHI fields, BurnedInAnnotion states, and private tags)
-with zero false positives on the clean series.
+detected the seeded synthetic issues in this dataset, including inconsistent dimensions,
+mixed modalities, duplicate instance numbers, PHI fields, BurnedInAnnotion states, and
+private tags, and did not flag the clean synthetic series.
 
 **Keywords:** DICOM, medical imaging, quality assurance, de-identification,
 privacy, Python, open-source software
@@ -53,7 +56,7 @@ RadScan Lite fills this gap. It is designed around core principles:
 - **Correctness over speed**: every check is deterministic and documented
 - **Privacy by design**: PHI values are never displayed, logged, or exported
 - **Architecture before implementation**: modular design separates concerns
-- **Testing as a requirement**: comprehensive synthetic-data test suite
+- **Testing as a requirement**: focused synthetic-data test suite
 - **No network requests**: all processing is local
 
 ## 2. System Design
@@ -202,7 +205,7 @@ The scanner analyzed all 15 files and produced 34 findings:
 | INFO | 20 | TransferSyntaxUID missing, DeidentificationMethod missing, PatientIdentityRemoved missing, BurnedInAnnotation=NO, private tags present |
 | MANUAL REVIEW | 1 | BurnedInAnnotation missing |
 
-The clean series produced zero findings, confirming no false positives on valid data.
+The clean synthetic series produced zero findings in this benchmark.
 
 ### 4.3 Test Suite
 
@@ -261,7 +264,7 @@ itself.
 - **DicomBrowser**: GUI tool for DICOM exploration. Not designed for batch
   preflight scanning.
 
-RadScan Lite differentiates through its combination of multi-file consistency
+RadScan Lite is intended to be useful through its combination of multi-file consistency
 checking, privacy-aware design, automated severity classification, and
 researcher-friendly Streamlit interface.
 
@@ -277,9 +280,9 @@ researcher-friendly Streamlit interface.
 
 RadScan Lite provides a practical, privacy-conscious solution for preflight
 quality assurance of DICOM datasets in research settings. Its modular
-architecture, comprehensive check coverage, and strict privacy guarantees
+architecture, documented check coverage, and privacy safeguards
 make it suitable for integration into research data pipelines. The tool is
-open-source and available at [GitHub repository URL].
+open-source and available at https://github.com/AKaturu/radscan-lite.
 
 ## Acknowledgments
 
