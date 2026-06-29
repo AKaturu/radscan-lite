@@ -4,8 +4,6 @@
 [![Python](https://img.shields.io/badge/python-3.11%2B-blue.svg)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-> **Validation status:** Software functionality has been tested using synthetic data. This project has not undergone clinical validation.
-
 A local, read-only DICOM dataset preflight scanner for radiology researchers.
 
 RadScan Lite inspects DICOM folders and ZIP archives for structural problems, series inconsistencies, duplicate identifiers, pixel decoding failures, and potential privacy risks before a dataset is shared, analyzed, or used in research tooling.
@@ -13,6 +11,19 @@ RadScan Lite inspects DICOM folders and ZIP archives for structural problems, se
 > Not a medical device. Does not diagnose disease. Does not establish HIPAA compliance. All findings require appropriate local review.
 
 ![RadScan Lite synthetic demo](demo_assets/demo.gif)
+
+## Evidence Status
+
+| Evidence | Status |
+|---|---|
+| Unit and integration tests | Complete |
+| Synthetic end-to-end evaluation | Complete |
+| Public-data evaluation | Not completed |
+| Independent expert review | Not completed |
+| Institutional validation | Not completed |
+| Prospective clinical validation | Not completed |
+
+This software is a research prototype and is not intended for independent clinical decision-making.
 
 ## Screenshots
 
