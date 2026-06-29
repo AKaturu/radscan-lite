@@ -15,3 +15,16 @@ venv/
 .mypy_cache/
 .pytest_cache/
 .coverage
+
+# External validation data and local secrets
+RadiologyExternalValidation/
+external_data/
+.external-data/
+external-validation/
+outputs/external/
+predictions/external/
+*.env
+.env*
+*.key
+*.token
+*credentials*.json
