@@ -17,14 +17,12 @@
 
 ## Quality Gates
 
-- 29 pytest tests passing
+- 33 pytest tests passing
 - Coverage gate at 80% (enforced in CI)
 - No ruff violations
 - No mypy errors
 
 ## Known Issues
 
-- FrameOfReferenceUID values in synthetic data emit pydicom warnings (invalid UI format for test data only)
-- `write_like_original` is deprecated in pydicom 3.x in favor of `enforce_file_format` (no functional impact)
 - Test suite generates ~300 MB of temporary DICOM files during session-scoped fixtures
 - Optional pylibjpeg dependency noted in docs but not tested

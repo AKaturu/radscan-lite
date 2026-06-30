@@ -3,11 +3,12 @@ from __future__ import annotations
 import json
 import os
 import sys
+import warnings
 import zipfile
 
 import pydicom
 import pytest
-from pydicom.uid import generate_uid
+from pydicom.uid import UID, generate_uid
 
 from radscan_lite.archive_security import cleanup_temp_dir, safe_extract_zip
 from radscan_lite.dicom_reader import has_dicm_prefix, read_file_result
@@ -332,10 +333,27 @@ class TestScanner:
         )
         p1 = os.path.join(temp_output_dir, "dup1.dcm")
         p2 = os.path.join(temp_output_dir, "dup2.dcm")
-        ds1.save_as(p1, write_like_original=False)
-        ds2.save_as(p2, write_like_original=False)
+        _save_ds(ds1, p1)
+        _save_ds(ds2, p2)
         report = scan_directory(temp_output_dir)
         assert len(report.duplicate_sop_instance_uids) > 0
+
+    def test_synthetic_frame_of_reference_uids_are_valid(self, synthetic_dataset):
+        for subdir in ("clean_series", "inconsistent_series", "privacy_series"):
+            path = os.path.join(synthetic_dataset, subdir)
+            for fname in sorted(os.listdir(path)):
+                ds = pydicom.dcmread(os.path.join(path, fname), stop_before_pixels=True)
+                assert UID(ds.FrameOfReferenceUID).is_valid
+
+    def test_synthetic_generation_has_no_pydicom_uid_warnings(self, temp_output_dir):
+        with warnings.catch_warnings(record=True) as caught:
+            warnings.simplefilter("always")
+            from generate_synthetic_data import generate_dataset
+
+            generate_dataset(temp_output_dir)
+        messages = [str(item.message) for item in caught]
+        assert not any("Invalid value for VR UI" in message for message in messages)
+        assert not any("write_like_original" in message for message in messages)
 
 
 class TestArchiveSecurity:

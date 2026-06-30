@@ -32,7 +32,7 @@ def _make_dataset(
     pixel_spacing: str = "0.5\\0.5",
     image_orientation: str = "1\\0\\0\\0\\1\\0",
     image_position: str = "0.0\\0.0\\0.0",
-    frame_of_reference: str = "FRAME.1",
+    frame_of_reference: str | None = None,
     burn_in_annotation: str | None = None,
     patient_name: str | None = None,
     patient_id: str | None = None,
@@ -68,7 +68,7 @@ def _make_dataset(
     ds.PixelSpacing = pixel_spacing
     ds.ImageOrientationPatient = image_orientation
     ds.ImagePositionPatient = image_position
-    ds.FrameOfReferenceUID = frame_of_reference
+    ds.FrameOfReferenceUID = frame_of_reference or generate_uid()
     ds.SliceLocation = str(instance_number * 1.0)
 
     if burn_in_annotation is not None:
@@ -105,6 +105,9 @@ def generate_dataset(output_dir: str) -> str:
     series_uid_inconsistent = generate_uid()
     study_uid_privacy = generate_uid()
     series_uid_privacy = generate_uid()
+    frame_uid_clean = generate_uid()
+    frame_uid_inconsistent = generate_uid()
+    frame_uid_privacy = generate_uid()
 
     clean_dir = os.path.join(base, "clean_series")
     inconsistent_dir = os.path.join(base, "inconsistent_series")
@@ -125,7 +128,7 @@ def generate_dataset(output_dir: str) -> str:
             pixel_spacing="0.5\\0.5",
             image_orientation="1\\0\\0\\0\\1\\0",
             image_position=f"0.0\\0.0\\{i * 1.0}",
-            frame_of_reference="FRAME.CLEAN",
+            frame_of_reference=frame_uid_clean,
         )
         _save_ds(ds, os.path.join(clean_dir, f"ct_clean_{i:03d}.dcm"))
 
@@ -142,7 +145,7 @@ def generate_dataset(output_dir: str) -> str:
             "pixel_spacing": "0.5\\0.5" if i <= 3 else "1.0\\1.0",
             "image_orientation": "1\\0\\0\\0\\1\\0" if i != 5 else "0\\1\\0\\1\\0\\0",
             "image_position": f"0.0\\0.0\\{i * 3.0}",
-            "frame_of_reference": "FRAME.INCONSISTENT",
+            "frame_of_reference": frame_uid_inconsistent,
         }
         ds = _make_dataset(**kwargs)
         _save_ds(ds, os.path.join(inconsistent_dir, f"ct_inconsistent_{i:03d}.dcm"))
@@ -188,7 +191,7 @@ def generate_dataset(output_dir: str) -> str:
             rows=512,
             cols=512,
             instance_number=i,
-            frame_of_reference="FRAME.PRIVACY",
+            frame_of_reference=frame_uid_privacy,
             **kwargs,
         )
         _save_ds(ds, os.path.join(privacy_dir, f"ct_privacy_{i:03d}.dcm"))
